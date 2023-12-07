@@ -29,6 +29,13 @@ if [ $? -gt 0 ]; then
         echo "Erro ao criar Database!"; exit 0
 fi
 
+sudo sed -i 's/^bind-address/# bind-address/' /etc/mysql/mariadb.conf.d/50-server.cnf
+if [ $? -gt 0 ]; then
+        echo "Erro ao alterar o arquivo 50-server.cnf!"; exit 0
+fi
+
+sudo systemctl restart mariadb
+
 echo "------------------------------Instalação concluída com sucesso!------------------------------"
 echo "----------------------Script by: Eliezer Ribeiro | linkedin.com/in/elinux--------------------"
 exit 0
