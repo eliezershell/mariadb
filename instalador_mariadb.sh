@@ -20,9 +20,9 @@ read -p "Senha de usuário: " senha
 read -p "Nome do banco de dados: " banco
 
 sudo mysql -u root <<MYSQL_SCRIPT
-CREATE USER '$usuario'@'localhost' IDENTIFIED BY '$senha';
+CREATE USER '$usuario'@'%' IDENTIFIED BY '$senha';
 CREATE DATABASE $banco;
-GRANT ALL PRIVILEGES ON $banco.* TO '$usuario'@'localhost';
+GRANT ALL PRIVILEGES ON $banco.* TO '$usuario'@'%';
 FLUSH PRIVILEGES;
 MYSQL_SCRIPT
 if [ $? -gt 0 ]; then
